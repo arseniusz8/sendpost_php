@@ -23,7 +23,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
     }
   ],
   "require": {
-    "arseniusz8/sendpost_php": "1.0.0"
+    "arseniusz8/GIT_REPO_ID": "*@dev"
   }
 }
 ```
@@ -44,26 +44,32 @@ require_once('/path/to/sendpost/vendor/autoload.php');
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
+    <?php
+      require_once(__DIR__ . '/vendor/autoload.php');
+      $client = new GuzzleHttp\Client();
 
+      $apiInstance = new sendpost\api\EmailApi($client);
+  
+      $x_sub_account_api_key = 'your_api_key'; // string | Sub-Account API Key
+      $email_message = new \sendpost\model\EmailMessage(); 
+      $email_message->setSubject('Hello World');
+      $email_message->setHtmlBody('<strong>it works!</strong>');
+      $email_message->setIppool('PiedPiper');
+      $from = new \sendpost\model\From();
+      $from->setEmail('richard@piedpiper.com');
 
+      $to = new \sendpost\model\To();
+      $to->setEmail('gavin@hooli.com');
+      $email_message->setTo(array($to));
+      $email_message->setFrom($from);
 
-
-$apiInstance = new sendpost\Api\EmailApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$x_sub_account_api_key = 'x_sub_account_api_key_example'; // string | Sub-Account API Key
-$email_message = new \sendpost\model\EmailMessage(); // \sendpost\model\EmailMessage | Email message
-
-try {
-    $result = $apiInstance->sendEmail($x_sub_account_api_key, $email_message);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling EmailApi->sendEmail: ', $e->getMessage(), PHP_EOL;
-}
+      try {
+          $result = $apiInstance->sendEmail($x_sub_account_api_key, $email_message);
+          print_r($result);
+      } catch (Exception $e) {
+          echo 'Exception when calling EmailApi->sendEmail: ', $e->getMessage(), PHP_EOL;
+      }
+    ?> 
 
 ```
 
