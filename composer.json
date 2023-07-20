@@ -10,6 +10,7 @@
         "rest",
         "api"
     ],
+    "name": "arseniusz8/sendpost_php",
     "homepage": "https://openapi-generator.tech",
     "license": "unlicense",
     "authors": [
