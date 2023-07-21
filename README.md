@@ -16,14 +16,8 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 
 ```json
 {
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/arseniusz8/sendpost_php.git"
-    }
-  ],
   "require": {
-    "arseniusz8/GIT_REPO_ID": "*@dev"
+    "arseniusz8/sendpost_php": "^1.0.0"
   }
 }
 ```
